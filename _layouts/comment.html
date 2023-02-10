@@ -1,0 +1,9 @@
+<h1>Categories</h1>
+
+{% if strapi.collections.comments.size > 0 %}
+<ul>
+    {% for comment in strapi.collections.comments %}
+    <li>{{ comment.attributes.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}

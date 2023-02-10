@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+{% if strapi.collections.intros.size > 0 %}
+{% for intro in strapi.collections.intros %}
+
+<h3>{{ intro.attributes.Title }}</h3>
+{{ intro.attributes.Content }}
+{% endfor %}
+{% endif %}
+
+<div>
+    <h3>Trending on Techno blog</h3>
+
+    {% if strapi.collections.posts.size > 0 %}
+
+
+        {% for post in strapi.collections.posts %}
+           <p>
+            <a href="/posts{{post.id | relative_url}}">{{ post.attributes.Title }}</a>
+            </p>
+        {% endfor %}
+
+    {% endif %}
+
+</div>

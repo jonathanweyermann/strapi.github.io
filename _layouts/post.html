@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+{% assign post_id = page.dir | split: '/' | last | plus: 0 | minus: 1 %}
+
+<h1>{{ strapi.collections.posts[post_id].attributes.Title }}</h1>
+
+<p>{{ strapi.collections.posts[post_id].attributes.Content }}</p>
+
+<p>Published on {{ strapi.collections.posts[post_id].attributes.PublishDate | date_to_string }} by {{strapi.collections.posts[post_id].attributes.writer.attributes.Name}}</p>
+
+{{strapi.collections.posts[post_id].attributes.writer | json }} --json
+{{strapi.collections.posts[post_id].attributes.writer.data.attributes | json }} --json attributes
+{{strapi.collections.posts[post_id].attributes.writer.data.attributes.Name }} --Name
+
+{% assign parsed_writer = strapi.collections.posts[post_id].attributes.writer | json %}
+
+<h2>{{ parsed_writer }}</h2> data2
+<h2>{{ parsed_writer.data }}</h2> data
+<p>Age: {{ parsed_writer.attributes }}</p>
+<p>Address: {{ parsed_writer.Name }}</p>
+
+<p>{{ page.document.strapi_attributes }} ---stra</p>
+<p>{{ page.document.strapi_attributes.posts[post_id].data | json }} ---stra1.1</p>
+<p>{{ page.document.strapi_attributes.posts[post_id].data.attributes | json }} ---stra1.3</p>
+<p>{{ page.document.strapi_attributes.posts[post_id].data.attributes.writer | json }} ---stra1.5</p>
+<p>{{ page.document.strapi_attributes.posts[post_id].data.attributes.writer }} ---stra2</p>
+<p>{{ page.document.strapi_attributes.posts[post_id].data.attributes.writer.data.attributes.Name }} ---stra3</p>
+
+<p>{{ page.document.content | markdownify }}</p>
+
+
+<h1>{{page.document.title}}</h1>
+<span class="post-meta">{{ page.document.createdAt | date_to_string }} by <a
+        href="/writer/{{ page.document.author.username }}">{{ page.document.writer.name }}</a></span>
+{{ page.document.content | markdownify }}
+
+<script>
+console.log(JSON.stringify(page.document.strapi_attributes) + "---ff")
+</script>
+
+<script>alert("They're good and good for you.")
+console.log(JSON.stringify(strapi.collections.posts[post_id].attributes.writer) + "---xff")</script>

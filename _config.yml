@@ -2,6 +2,55 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 remote_theme: pages-themes/hacker@v0.2.0
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-feed
+  - jekyll-strapi-4
 title: Octocat's homepage
 description: Bookmark this to keep an eye on my project updates!
+strapi:
+  # Your API endpoint (optional, default to http://localhost:1337)
+  endpoint: http://localhost:1337
+  # Collections, key is used to access in the strapi.collections
+  # template variable
+  collections:
+    # Example for a "posts" collection
+    categories:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: categories
+      permalink: categories/:id/
+      layout: category.html
+      # Generate output files or not (default: false)
+      output: true
+
+    posts:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: posts
+      permalink: posts/:id/
+      layout: post.html
+      # Generate output files or not (default: false)
+      output: true
+      populate: "*"
+
+    writer:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: writers
+      permalink: writers/:id/
+      layout: writer.html
+      # Generate output files or not (default: false)
+      output: true
+
+    comments:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: comments
+      permalink: comments/:id/
+      layout: comment.html
+      # Generate output files or not (default: false)
+      output: true
+
+    intros:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: intros
+      permalink: intros/:id/
+      layout: intros.html
+      # Generate output files or not (default: false)
+      output: true

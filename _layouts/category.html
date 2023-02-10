@@ -1,0 +1,9 @@
+<h1>Categories</h1>
+
+    {% if strapi.collections.categories.size > 0 %}
+        <ul>
+            {% for category in strapi.collections.categories %}
+            <li>{{ category.attributes.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
